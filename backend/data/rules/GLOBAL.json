@@ -1,0 +1,80 @@
+{
+  "region": "GLOBAL",
+  "display_name": "Global (General Guide)",
+  "default_language": "en",
+  "rules": {
+    "Plastic (PET)": {
+      "bin_color": "recycling bin",
+      "category": "recyclable",
+      "prep": ["Empty and rinse the container", "Remove the cap (check locally)", "Crush to save space"],
+      "deposit_return": false,
+      "notes": "PET (1) and HDPE (2) plastics are most widely accepted."
+    },
+    "Plastic": {
+      "bin_color": "recycling bin",
+      "category": "recyclable",
+      "prep": ["Empty and rinse", "Check the resin code (▲ symbol) on the bottom", "Follow local plastics policy"],
+      "notes": "Not all plastics are recyclable everywhere — check local guidelines."
+    },
+    "Glass": {
+      "bin_color": "glass recycling bin",
+      "category": "recyclable",
+      "prep": ["Rinse the container", "Remove lids and caps", "Do not break — deposit whole"],
+      "notes": "Ceramics, mirrors, and window glass are usually NOT accepted."
+    },
+    "Aluminum": {
+      "bin_color": "metal/recycling bin",
+      "category": "recyclable",
+      "prep": ["Rinse the can", "You may crush it to save space"],
+      "notes": "Aluminum cans are among the most valuable recyclables — always recycle."
+    },
+    "Metal": {
+      "bin_color": "metal/recycling bin",
+      "category": "recyclable",
+      "prep": ["Rinse if food-contaminated", "Remove non-metal parts if possible"],
+      "notes": "Scrap metal may need a separate drop-off point."
+    },
+    "Cardboard": {
+      "bin_color": "paper/cardboard bin",
+      "category": "recyclable",
+      "prep": ["Flatten the box", "Remove tape and staples if possible", "Keep dry"],
+      "notes": "Pizza boxes with heavy grease are often rejected — check locally."
+    },
+    "Paper": {
+      "bin_color": "paper bin",
+      "category": "recyclable",
+      "prep": ["Keep dry and uncontaminated", "Remove plastic windows from envelopes"],
+      "notes": "Shredded paper may need to be bagged separately."
+    },
+    "Organic": {
+      "bin_color": "organic/compost bin",
+      "category": "compostable",
+      "prep": ["No plastic bags", "Remove any non-organic parts", "Drain excess liquid"],
+      "notes": "Meat and dairy may not be accepted in all compost programs — check locally."
+    },
+    "E-Waste": {
+      "bin_color": "special drop-off",
+      "category": "special disposal",
+      "prep": ["Do NOT place in regular bins", "Find a certified e-waste collection point", "Remove batteries if possible"],
+      "notes": "Many retailers offer take-back programs for electronic devices."
+    },
+    "Textile": {
+      "bin_color": "textile collection",
+      "category": "special disposal",
+      "prep": ["Clean and dry the item", "Place in a textile collection bin or donate"],
+      "notes": "Wearable clothes should be donated before recycling."
+    },
+    "Mixed Waste": {
+      "bin_color": "residual waste bin",
+      "category": "landfill",
+      "prep": ["Cannot be further sorted — place in residual waste"],
+      "notes": "Try to identify components that can be separated and recycled individually."
+    },
+    "Ceramic": {
+      "bin_color": "residual waste bin",
+      "category": "landfill",
+      "prep": ["Place in residual waste", "Wrap sharp pieces for safety"],
+      "notes": "Ceramics cannot be processed with glass recycling."
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "_comment": "CO2 savings in kg and energy savings in kWh per single item recycled vs. landfill/incineration.",
+  "default": {
+    "co2_kg": 0.1,
+    "energy_kwh": 0.3,
+    "impact_text": "Recycling this item saves approximately 0.1 kg of CO₂."
+  },
+  "plastic_(pet)": {
+    "co2_kg": 0.18,
+    "energy_kwh": 2.6,
+    "impact_text": "Recycling one PET bottle saves ~0.18 kg CO₂ and 2.6 kWh — enough to charge a smartphone 20 times."
+  },
+  "plastic": {
+    "co2_kg": 0.15,
+    "energy_kwh": 2.0,
+    "impact_text": "Recycling plastic saves ~0.15 kg CO₂ and 2 kWh of energy per item."
+  },
+  "glass": {
+    "co2_kg": 0.3,
+    "energy_kwh": 0.5,
+    "impact_text": "Recycling glass saves ~0.3 kg CO₂ and reduces raw material extraction."
+  },
+  "aluminum": {
+    "co2_kg": 9.0,
+    "energy_kwh": 14.0,
+    "impact_text": "Recycling one aluminum can saves ~9 kg CO₂ and 14 kWh — enough to power a laptop for 7 hours!"
+  },
+  "metal": {
+    "co2_kg": 1.8,
+    "energy_kwh": 3.5,
+    "impact_text": "Recycling metal saves ~1.8 kg CO₂ and 3.5 kWh per item."
+  },
+  "cardboard": {
+    "co2_kg": 0.7,
+    "energy_kwh": 1.2,
+    "impact_text": "Recycling cardboard saves ~0.7 kg CO₂ and reduces deforestation."
+  },
+  "paper": {
+    "co2_kg": 0.5,
+    "energy_kwh": 1.0,
+    "impact_text": "Recycling paper saves ~0.5 kg CO₂ and preserves roughly 17 trees per tonne."
+  },
+  "organic": {
+    "co2_kg": 0.05,
+    "energy_kwh": 0.1,
+    "impact_text": "Composting food waste prevents methane emission from landfill — a potent greenhouse gas."
+  },
+  "e-waste": {
+    "co2_kg": 2.5,
+    "energy_kwh": 5.0,
+    "impact_text": "Proper e-waste recycling recovers rare metals and prevents toxic substances from entering soil and water."
+  },
+  "textile": {
+    "co2_kg": 2.1,
+    "energy_kwh": 4.0,
+    "impact_text": "Donating or recycling one kg of clothing saves ~2.1 kg CO₂ compared to landfill."
+  },
+  "mixed_waste": {
+    "co2_kg": 0.0,
+    "energy_kwh": 0.0,
+    "impact_text": "Try to separate individual materials to maximize environmental benefit."
+  }
+}

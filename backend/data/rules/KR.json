@@ -1,0 +1,81 @@
+{
+  "region": "KR",
+  "display_name": "South Korea",
+  "default_language": "ko",
+  "rules": {
+    "Plastic (PET)": {
+      "bin_color": "transparent bag",
+      "category": "recyclable",
+      "prep": ["Remove the label", "Rinse the bottle", "Crush flat", "Place in the transparent recycling bag"],
+      "deposit_return": false,
+      "notes": "PET bottles must be label-free and clean. Korea has strict sorting requirements."
+    },
+    "Plastic": {
+      "bin_color": "transparent bag",
+      "category": "recyclable",
+      "prep": ["Rinse thoroughly", "Remove non-plastic parts", "Sort by resin type if required by local municipality"],
+      "notes": "Plastics (PE, PP, PS) go in transparent recycling bags. Some types may require separate sorting."
+    },
+    "Glass": {
+      "bin_color": "green glass bin",
+      "category": "recyclable",
+      "prep": ["Rinse the bottle", "Remove caps and lids", "Deposit in the glass recycling bin"],
+      "deposit_return": true,
+      "notes": "빈용기보증금 (empty container deposit) applies to most glass bottles — return to point of purchase."
+    },
+    "Aluminum": {
+      "bin_color": "metal bin",
+      "category": "recyclable",
+      "prep": ["Rinse and dry", "Place in metal recycling bin (캔류)"],
+      "notes": "Aluminum cans are highly valuable — always separate from other waste."
+    },
+    "Metal": {
+      "bin_color": "metal bin",
+      "category": "recyclable",
+      "prep": ["Rinse if food-contaminated", "Place in 캔류 (can/metal) bin"],
+      "notes": "Large metal items → community recycling center (재활용 센터)."
+    },
+    "Cardboard": {
+      "bin_color": "cardboard bundle",
+      "category": "recyclable",
+      "prep": ["Flatten and fold", "Tie into a bundle with string or place in paper recycling area", "Keep dry"],
+      "notes": "Korea requires cardboard to be bundled separately, not in bags."
+    },
+    "Paper": {
+      "bin_color": "paper recycling area",
+      "category": "recyclable",
+      "prep": ["Keep dry", "Bundle newspapers/paper together"],
+      "notes": "Receipt paper (thermal) usually goes in general waste."
+    },
+    "Organic": {
+      "bin_color": "designated food waste bag",
+      "category": "compostable",
+      "prep": ["Purchase designated 음식물 쓰레기 봉투 (food waste bag) from convenience store/supermarket", "Drain all liquid", "Remove non-food items"],
+      "notes": "VOLUME-BASED FEE SYSTEM: you must purchase official food waste bags (종량제 봉투) to dispose of food waste legally. Cost depends on bag size."
+    },
+    "E-Waste": {
+      "bin_color": "special drop-off",
+      "category": "special disposal",
+      "prep": ["Use designated e-waste collection boxes at apartment complexes or community centers", "Large appliances: contact 한국전자제품자원순환공제조합 for pick-up"],
+      "notes": "Korea has a mandatory take-back program (생산자책임재활용제도 / EPR)."
+    },
+    "Mixed Waste": {
+      "bin_color": "종량제 봉투 (standard waste bag)",
+      "category": "landfill",
+      "prep": ["Purchase official 종량제 봉투 (volume-rate bag) from convenience store or supermarket", "All non-recyclable waste must go in this bag"],
+      "notes": "VOLUME-BASED FEE SYSTEM: disposing of waste in unmarked bags is illegal and subject to fines."
+    },
+    "Textile": {
+      "bin_color": "clothing donation box",
+      "category": "special disposal",
+      "prep": ["Clean and dry", "Place in 의류 수거함 (clothing collection box) found in most apartment complexes"],
+      "notes": "Damaged textiles unsuitable for donation → general waste in 종량제 봉투."
+    },
+    "Ceramic": {
+      "bin_color": "종량제 봉투",
+      "category": "landfill",
+      "prep": ["Place in official waste bag (종량제 봉투)", "Wrap sharp shards safely"],
+      "notes": "Not recyclable with glass."
+    }
+  }
+}

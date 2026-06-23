@@ -1,0 +1,81 @@
+{
+  "region": "AT",
+  "display_name": "Austria",
+  "default_language": "de",
+  "rules": {
+    "Plastic (PET)": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Empty the bottle", "Crush it flat", "Replace the cap"],
+      "deposit_return": true,
+      "notes": "Einwegpfand (€0.25) applies to PET bottles since January 2025. Return at supermarket deposit machines."
+    },
+    "Plastic": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Rinse and empty", "Place in the Gelber Sack / gelbe Tonne"],
+      "notes": "Austria's yellow bin (Gelbe Tonne) accepts plastic packaging."
+    },
+    "Glass": {
+      "bin_color": "white (clear) / green (colored) / brown",
+      "category": "recyclable",
+      "prep": ["Rinse the bottle or jar", "Remove lids and caps", "Sort by color into the correct Altglascontainer"],
+      "notes": "Separate by color: white glass → weißer Behälter, colored glass → grüner/brauner Behälter."
+    },
+    "Aluminum": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Rinse the can", "Place in the Gelbe Tonne or yellow bag"],
+      "notes": "Aluminum foil and trays also go into the yellow bin."
+    },
+    "Metal": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Rinse if food-contaminated", "Place in Gelbe Tonne"],
+      "notes": "Large metal items → Mistplatz (recycling yard)."
+    },
+    "Cardboard": {
+      "bin_color": "blue",
+      "category": "recyclable",
+      "prep": ["Flatten the box", "Remove sticky tape", "Keep dry"],
+      "notes": "Place in the blaue Tonne (blue bin) for paper/cardboard."
+    },
+    "Paper": {
+      "bin_color": "blue",
+      "category": "recyclable",
+      "prep": ["Keep dry", "Remove plastic packaging"],
+      "notes": "Blaue Tonne accepts newspapers, books, and paper packaging."
+    },
+    "Organic": {
+      "bin_color": "brown",
+      "category": "compostable",
+      "prep": ["No plastic bags — use compostable bags or newspaper", "Include vegetable peels, coffee grounds, eggshells"],
+      "notes": "Braune Tonne (brown bin) for organic waste. Meat and cooked food: check with Gemeinde."
+    },
+    "E-Waste": {
+      "bin_color": "special drop-off",
+      "category": "special disposal",
+      "prep": ["Do NOT place in household bins", "Bring to a Mistplatz (recycling yard) or electronics retailer (Elektroaltgeräte-Rücknahme)"],
+      "deposit_return": false,
+      "notes": "Austrian law (ElAG 2005) requires free take-back at retailers selling similar products."
+    },
+    "Mixed Waste": {
+      "bin_color": "black/grey",
+      "category": "landfill",
+      "prep": ["Place in the Restmülltonne (black/grey bin)"],
+      "notes": "Restmüll is incinerated for energy in Austria — reduce first."
+    },
+    "Textile": {
+      "bin_color": "textile container",
+      "category": "special disposal",
+      "prep": ["Clean and dry", "Place in a Altkleidersammlung (textile collection container)"],
+      "notes": "Many charity organizations and municipalities operate textile drop-offs."
+    },
+    "Ceramic": {
+      "bin_color": "black/grey",
+      "category": "landfill",
+      "prep": ["Place in Restmülltonne", "Wrap sharp fragments for safety"],
+      "notes": "Ceramics and porcelain cannot be mixed with glass recycling."
+    }
+  }
+}

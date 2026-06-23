@@ -1,0 +1,80 @@
+{
+  "region": "DE",
+  "display_name": "Germany",
+  "default_language": "de",
+  "rules": {
+    "Plastic (PET)": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Empty the bottle", "Replace the cap", "Return to Pfand machine (deposit)"],
+      "deposit_return": true,
+      "notes": "Einwegpfand: €0.25 for plastic bottles bearing the Pfand logo. Return at supermarket."
+    },
+    "Plastic": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Rinse packaging", "Place in Gelbe Tonne / Gelber Sack"],
+      "notes": "The Duales System accepts plastic, metal, and composite packaging marked with the Grüner Punkt."
+    },
+    "Glass": {
+      "bin_color": "white / green / brown",
+      "category": "recyclable",
+      "prep": ["Rinse", "Remove metal lids", "Sort by color at Glascontainer"],
+      "notes": "Do not use glass containers at night (Nachtruhe). Ceramics and heat-resistant glass NOT accepted."
+    },
+    "Aluminum": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Rinse cans and foil", "Place in Gelbe Tonne"],
+      "notes": "Pfand applies to aluminum cans with the Pfand logo (€0.25)."
+    },
+    "Metal": {
+      "bin_color": "yellow",
+      "category": "recyclable",
+      "prep": ["Rinse food tins", "Place in Gelbe Tonne"],
+      "notes": "Large metal items → Wertstoffhof (recycling yard)."
+    },
+    "Cardboard": {
+      "bin_color": "blue",
+      "category": "recyclable",
+      "prep": ["Flatten boxes", "Remove tape and plastic", "Keep dry"],
+      "notes": "Blaue Tonne for paper and cardboard. Pizza boxes with heavy grease → Restmüll."
+    },
+    "Paper": {
+      "bin_color": "blue",
+      "category": "recyclable",
+      "prep": ["Dry only", "Remove plastic wrapping"],
+      "notes": "Books, catalogues, envelopes (without plastic windows) all go in the blue bin."
+    },
+    "Organic": {
+      "bin_color": "brown",
+      "category": "compostable",
+      "prep": ["Use only compostable or paper bags", "Include fruit/vegetable scraps, coffee, eggshells"],
+      "notes": "Braune Tonne. Meat, fish, and cooked food: regulations vary by municipality (Gemeinde)."
+    },
+    "E-Waste": {
+      "bin_color": "special drop-off",
+      "category": "special disposal",
+      "prep": ["Take to Wertstoffhof or retailer take-back point", "Do NOT place in household bins"],
+      "notes": "ElektroG law requires free take-back from retailers with ≥400 m² floor space."
+    },
+    "Mixed Waste": {
+      "bin_color": "black/grey",
+      "category": "landfill",
+      "prep": ["Place in Restmülltonne"],
+      "notes": "Reduce Restmüll by separating glass, paper, and packaging properly."
+    },
+    "Textile": {
+      "bin_color": "textile container",
+      "category": "special disposal",
+      "prep": ["Wash and dry the item", "Use a textile collection container or donate"],
+      "notes": "Altkleider containers are widespread in Germany (DRK, Humana, etc.)."
+    },
+    "Ceramic": {
+      "bin_color": "black/grey",
+      "category": "landfill",
+      "prep": ["Restmülltonne", "Wrap sharp pieces"],
+      "notes": "Not accepted with glass recycling."
+    }
+  }
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>RecycleBot — AI Waste Identifier</title>
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <script>
+    window.onerror = function(msg, src, line) {
+      var b = document.createElement('div');
+      b.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#c00;color:#fff;padding:1rem;z-index:9999;font-size:13px;word-break:break-all;';
+      b.textContent = 'JS ERROR (line ' + line + '): ' + msg;
+      (document.body || document.documentElement).appendChild(b);
+    };
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
+<header class="app-header" role="banner">
+  <div class="header-inner">
+    <span class="logo" aria-label="RecycleBot">♻️ RecycleBot</span>
+    <nav class="header-nav" aria-label="Main navigation">
+      <button class="nav-btn active" data-view="scan"    aria-label="Scan">📷 Scan</button>
+      <button class="nav-btn"        data-view="history" aria-label="History">📊 History</button>
+      <button class="nav-btn"        data-view="settings" aria-label="Settings">⚙️ Settings</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ══ LOCATION BAR ════════════════════════════════════════════════════════ -->
+<div class="location-bar" id="locationBar" role="status" aria-live="polite">
+  <span id="locationText">📍 No location set — tap to set your region</span>
+  <button class="link-btn" id="changeLocationBtn" aria-label="Change location">Change</button>
+</div>
+
+<!-- ══ MAIN VIEWS ══════════════════════════════════════════════════════════ -->
+<main id="mainContent" role="main">
+
+  <!-- ── SCAN VIEW ─────────────────────────────────────────────────────── -->
+  <section class="view active" id="scanView" aria-label="Scan waste item">
+
+    <!-- Upload / camera zone -->
+    <div class="scan-zone" id="scanZone" role="button" tabindex="0"
+         aria-label="Tap to take photo or upload image">
+      <canvas id="previewCanvas" aria-hidden="true"></canvas>
+      <div class="scan-placeholder" id="scanPlaceholder">
+        <span class="scan-icon" aria-hidden="true">📷</span>
+        <p class="scan-hint">Tap to photograph or upload a waste item</p>
+        <p class="scan-subhint">JPG or PNG, max 15 MB</p>
+      </div>
+    </div>
+
+    <!-- Hidden inputs -->
+    <input type="file" id="fileInput" accept="image/jpeg,image/png"
+           aria-label="Take a photo or choose from gallery" />
+
+    <!-- Action button -->
+    <div class="btn-row">
+      <button class="btn btn-primary" id="addPhotoBtn" aria-label="Add photo">
+        📷 Add Photo
+      </button>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay hidden" id="loadingOverlay" role="status" aria-live="assertive">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="loading-text" id="loadingText">Analysing image…</p>
+    </div>
+
+    <!-- Error banner -->
+    <div class="error-banner hidden" id="errorBanner" role="alert" aria-live="assertive">
+      <span id="errorText"></span>
+      <button class="close-btn" id="closeError" aria-label="Dismiss error">✕</button>
+    </div>
+
+  </section>
+
+  <!-- ── RESULTS VIEW ───────────────────────────────────────────────────── -->
+  <section class="view hidden" id="resultsView" aria-label="Scan results">
+
+    <button class="back-btn" id="backBtn" aria-label="Back to scan">← New Scan</button>
+
+    <!-- Image with bounding boxes -->
+    <div class="result-image-wrap">
+      <canvas id="resultCanvas" aria-label="Detected items with bounding boxes"></canvas>
+    </div>
+
+    <!-- Clutter / low-confidence warnings -->
+    <div class="warning-banner hidden" id="warningBanner" role="alert">
+      <span id="warningText"></span>
+    </div>
+
+    <!-- Item tabs -->
+    <div class="item-tabs" id="itemTabs" role="tablist" aria-label="Detected items"></div>
+
+    <!-- Item detail panel -->
+    <div class="item-detail" id="itemDetail" role="tabpanel"></div>
+
+    <!-- AI Disclaimer (Req, UC2 step 7) -->
+    <div class="disclaimer" role="note">
+      ⚠️ <strong>AI-generated</strong> — disposal instructions may contain errors.
+      Always verify with your local waste authority.
+    </div>
+
+    <!-- Ask RecycleBot -->
+    <button class="btn btn-accent" id="chatBtn" aria-label="Ask RecycleBot a question">
+      💬 Ask RecycleBot
+    </button>
+
+  </section>
+
+  <!-- ── CHAT VIEW ──────────────────────────────────────────────────────── -->
+  <section class="view hidden" id="chatView" aria-label="Chat with RecycleBot">
+
+    <button class="back-btn" id="chatBackBtn" aria-label="Back to results">← Results</button>
+    <h2 class="chat-title">💬 Ask RecycleBot</h2>
+    <p class="chat-context" id="chatContext"></p>
+
+    <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-label="Conversation"></div>
+
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Ask about this item…"
+             aria-label="Type your question" autocomplete="off" />
+      <button class="btn btn-primary" id="chatSendBtn" aria-label="Send message">Send</button>
+    </div>
+    <p class="disclaimer small">⚠️ AI-generated — may contain errors.</p>
+
+  </section>
+
+  <!-- ── HISTORY VIEW ───────────────────────────────────────────────────── -->
+  <section class="view hidden" id="historyView" aria-label="Recycling history and impact">
+
+    <h2 class="section-title">📊 My Recycling Impact</h2>
+
+    <div class="impact-cards" id="impactCards">
+      <div class="impact-card">
+        <span class="impact-num" id="totalScans">0</span>
+        <span class="impact-label">Items Scanned</span>
+      </div>
+      <div class="impact-card green">
+        <span class="impact-num" id="totalCo2">0</span>
+        <span class="impact-label">kg CO₂ Saved</span>
+      </div>
+      <div class="impact-card blue">
+        <span class="impact-num" id="totalEnergy">0</span>
+        <span class="impact-label">kWh Saved</span>
+      </div>
+    </div>
+
+    <div id="historyList" class="history-list" role="list"></div>
+    <div id="noHistory" class="empty-state hidden">
+      <p>No scan history yet.</p>
+      <p>Scan your first item to start tracking your impact!</p>
+    </div>
+
+  </section>
+
+  <!-- ── SETTINGS VIEW ─────────────────────────────────────────────────── -->
+  <section class="view hidden" id="settingsView" aria-label="Settings">
+
+    <h2 class="section-title">⚙️ Settings</h2>
+
+    <!-- Location -->
+    <div class="settings-group">
+      <label class="settings-label" for="countrySelect">📍 Location</label>
+      <div class="settings-row">
+        <select id="countrySelect" aria-label="Select your country or region"></select>
+        <button class="btn btn-secondary btn-sm" id="gpsBtn" aria-label="Detect location via GPS">
+          🛰️ GPS
+        </button>
+      </div>
+      <button class="btn btn-primary btn-sm" id="saveLocationBtn">Save Location</button>
+    </div>
+
+    <!-- Language -->
+    <div class="settings-group">
+      <label class="settings-label" for="languageSelect">🌐 Language</label>
+      <select id="languageSelect" aria-label="Select language for instructions">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+      </select>
+      <button class="btn btn-primary btn-sm" id="saveLanguageBtn">Save Language</button>
+    </div>
+
+    <!-- Data Consent -->
+    <div class="settings-group">
+      <label class="settings-label">🔒 Data &amp; Privacy</label>
+      <div class="toggle-row">
+        <span>Save scan history</span>
+        <label class="toggle" aria-label="Toggle scan history">
+          <input type="checkbox" id="consentToggle" role="switch" />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <p class="settings-note">
+        Images are <strong>never stored</strong>. With history enabled, only item name,
+        material, category, and date are saved locally (GDPR compliant).
+      </p>
+    </div>
+
+    <!-- Clear history -->
+    <div class="settings-group">
+      <label class="settings-label">🗑️ Data Management</label>
+      <button class="btn btn-danger btn-sm" id="clearHistoryBtn">Clear All History</button>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ══ LOCATION MODAL ══════════════════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="locationModal" role="dialog"
+     aria-modal="true" aria-labelledby="locationModalTitle">
+  <div class="modal">
+    <h3 id="locationModalTitle">Set Your Location</h3>
+    <p>RecycleBot needs your region to provide correct bin colors and local rules.</p>
+    <select id="modalCountrySelect" aria-label="Select country"></select>
+    <div class="modal-btn-row">
+      <button class="btn btn-secondary" id="modalGpsBtn">🛰️ Use GPS</button>
+      <button class="btn btn-primary"   id="modalSaveBtn">Confirm</button>
+      <button class="btn btn-ghost"     id="modalSkipBtn">Skip (Global Guide)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MATERIAL SELECT MODAL (SUC3 / decision #7) ════════════════════════ -->
+<div class="modal-overlay hidden" id="materialModal" role="dialog"
+     aria-modal="true" aria-labelledby="materialModalTitle">
+  <div class="modal">
+    <h3 id="materialModalTitle">Select Material</h3>
+    <p id="materialModalDesc">The AI could not confidently identify the material.
+       Please select it manually:</p>
+    <select id="materialSelect" aria-label="Select material type">
+      <option value="Plastic (PET)">Plastic (PET)</option>
+      <option value="Plastic">Plastic (other)</option>
+      <option value="Glass">Glass</option>
+      <option value="Aluminum">Aluminum / Metal</option>
+      <option value="Metal">Metal (other)</option>
+      <option value="Cardboard">Cardboard</option>
+      <option value="Paper">Paper</option>
+      <option value="Organic">Organic / Food Waste</option>
+      <option value="E-Waste">E-Waste</option>
+      <option value="Textile">Textile / Fabric</option>
+      <option value="Mixed Waste">Mixed Waste</option>
+      <option value="Ceramic">Ceramic / Porcelain</option>
+    </select>
+    <div class="modal-btn-row">
+      <button class="btn btn-primary" id="materialConfirmBtn">Confirm</button>
+      <button class="btn btn-ghost"   id="materialCancelBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js?v=3"></script>
+</body>
+</html>
